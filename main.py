@@ -11,6 +11,10 @@ class ModelName(str, Enum):
 app = FastAPI()
 
 
+@app.get("/files/{file_path:path}")
+async def read_file(file_path: str):
+    return {"file_path": file_path}
+"""
 @app.get("/models/{model_name}")
 async def get_model(model_name: ModelName):
     if model_name == ModelName.alexnet:
@@ -21,7 +25,7 @@ async def get_model(model_name: ModelName):
 
     return {"model_name": model_name, "message": "Have some residuals"}
 
-"""
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
