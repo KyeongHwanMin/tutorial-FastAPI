@@ -41,7 +41,7 @@ async def read_item(item_id: str, q: Optional[str] = None, short: bool = False):
             {"description": "This is an amazing item that has a long description"}
         )
     return item
-"""
+
 
 from typing import Optional
 
@@ -63,4 +63,31 @@ async def read_user_item(
         item.update(
             {"description": "This is an amazing item that has a long description"}
         )
+    return item
+
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/items/{item_id}")
+async def read_user_item(item_id: str, needy: str):
+    item = {"item_id": item_id, "needy": needy}
+    return item
+"""
+from typing import Optional
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/items/{item_id}")
+async def read_user_item(
+
+    item_id: str, needy: str, skip: int = 0, limit: Optional[int] = None
+
+):
+    item = {"item_id": item_id, "needy": needy, "skip": skip, "limit": limit}
     return item
